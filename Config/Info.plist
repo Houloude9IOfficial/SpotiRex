@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0"><dict>
+  <key>CFBundleDevelopmentRegion</key><string>en</string>
+  <key>CFBundleExecutable</key><string>SpotiRex</string>
+  <key>CFBundleIconFile</key><string>SpotiRex.icns</string>
+  <key>CFBundleIdentifier</key><string>com.crickdevs.spotirex</string>
+  <key>CFBundleInfoDictionaryVersion</key><string>6.0</string>
+  <key>CFBundleName</key><string>SpotiRex</string>
+  <key>CFBundlePackageType</key><string>APPL</string>
+  <key>CFBundleShortVersionString</key><string>0.1.0</string>
+  <key>CFBundleVersion</key><string>1</string>
+  <key>LSMinimumSystemVersion</key><string>14.0</string>
+  <key>NSAppleEventsUsageDescription</key><string>SpotiRex reads the current track and artwork from Spotify and Music to display what is playing. It never controls playback.</string>
+  <key>NSHighResolutionCapable</key><true/>
+</dict></plist>
