@@ -1,29 +1,39 @@
+![SpotiRex — your music, beautifully in view](Assets/SpotiRexBanner.svg)
+
 # SpotiRex
 
-SpotiRex is a native macOS now-playing display for the local Spotify and Music apps and Velora's local API. It reads playback metadata and artwork; it has no playback controls.
+**A little more room for the music you love.** SpotiRex turns what's playing on your Mac into a clean, full-window display with album artwork, track details, and colors drawn from the cover.
 
-## Build and open
+It works with **Spotify**, **Apple Music**, and **Velora**. Pick a favorite source or let SpotiRex follow the one that's playing. It's a display for your music, with no playback controls to get in the way.
 
-Requires macOS 14 or later and Xcode with Swift 5.10 or later.
+## Take a look
+
+<p align="center">
+  <img src="Showcase/Showcase1.png" alt="SpotiRex showing vivid album artwork and a long track title" width="49%">
+  <img src="Showcase/Showcase2.png" alt="SpotiRex showing album artwork, song title, and artist on a dark background" width="49%">
+  <img src="Showcase/Showcase3.png" alt="SpotiRex showing a minimal now-playing view with album artwork" width="49%">
+  <img src="Showcase/Showcase4.png" alt="SpotiRex showing purple album artwork and track details" width="49%">
+</p>
+
+The details appear when a new track starts or you move your pointer over the window, then settle into a simpler view after ten seconds. You can also keep the minimal view on all the time. While the player window is visible, SpotiRex asks macOS to keep the display awake.
+
+## Get started
+
+SpotiRex needs **macOS 14 or later**. There isn't a downloadable release yet; for now, build it from source using Xcode with Swift 5.10 or later:
 
 ```sh
-swift test
+git clone https://github.com/Houloude9IOfficial/SpotiRex.git
+cd SpotiRex
 ./Scripts/build-app.sh
 open dist/SpotiRex.app
 ```
 
-The script produces a locally signed app at `dist/SpotiRex.app`. It is for local use; distribution signing and notarization are separate work.
+Play something in the Spotify or Apple Music Mac app and allow the macOS **Automation** request when it appears. Spotify playback on another device is not shown. For Velora, enable its **Local API**, then choose **Connect Velora (read only)** in SpotiRex Settings and approve the request in Velora. You can choose a source in Settings or leave it on **Auto**.
 
-## Sources
+SpotiRex reads what's playing; it never sends playback commands. The optional Velora read token is kept in macOS Keychain. The locally built app uses an ad hoc signature and is not a notarized distribution build.
 
-- **Spotify and Music:** Open the corresponding Mac app. On first access, allow SpotiRex's macOS Automation request. The Settings window links to Automation permissions if access was denied. These readers observe only playback in the local apps. Spotify account playback on another device is outside this app's scope.
-- **Velora:** Enable **Local API** in Velora's desktop settings. In SpotiRex Settings, choose **Connect Velora (read only)** and approve the request in Velora. SpotiRex stores the resulting read token in macOS Keychain. Revoking it in Velora disconnects SpotiRex; the connection can be approved again. Velora's local API uses port `39031` on `127.0.0.1`.
-- **Source:** Auto displays the most recently observed playing source. Choosing Spotify, Music, or Velora pins that source; an inactive pinned source shows the waiting view.
+## Help shape it
 
-The rich view shows source, artwork, title, artist credit, album, and status when provided. After 10 seconds without pointer activity it shows artwork, title, and artist credit only. A new track, window focus, or pointer activity reveals details again. **Always show minimal view** keeps the simplified view permanently. Artist/collaborator text is shown exactly as supplied by each source.
+Ideas, bug reports, and code contributions are welcome. See [Contributing](CONTRIBUTING.md) for the short guide, and [Security](SECURITY.md) for private vulnerability reporting.
 
-SpotiRex holds a display-awake activity while its player window is visible, including fullscreen, and releases it when the window is hidden, minimized, or closed. macOS can still lock or sleep for reasons other than idle display sleep.
-
-## Verification boundary
-
-Local Spotify playback, artwork, source selection, the 10-second transition, Always minimal, and display-awake release were verified with the built app on this Mac. Velora HTTP response mapping, bearer authentication, paused state, and revoked-token behavior are covered by tests against a mock transport. Live Velora approval/playback and Music artwork require those sources to be available during device validation.
+SpotiRex is available under the [MIT License](LICENSE). Album artwork and music details shown in the Showcase screenshots belong to their respective rights holders and are **not** covered by the project license. SpotiRex is an independent project and is not affiliated with Spotify or Apple.
